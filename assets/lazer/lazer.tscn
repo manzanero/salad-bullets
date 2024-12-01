@@ -1,0 +1,91 @@
+[gd_scene load_steps=10 format=3 uid="uid://dqqsn23gwsxyu"]
+
+[ext_resource type="Script" path="res://assets/lazer/lazer.gd" id="1_j8idl"]
+[ext_resource type="AudioStream" uid="uid://bk78lu1dr656b" path="res://resources/guns/sounds/shot.mp3" id="2_lrpjs"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_5io03"]
+top_radius = 0.015
+bottom_radius = 0.015
+height = 100.0
+radial_segments = 6
+rings = 1
+cap_top = false
+cap_bottom = false
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0783d"]
+cull_mode = 1
+shading_mode = 0
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_2hjtb"]
+top_radius = 0.005
+bottom_radius = 0.005
+height = 100.0
+radial_segments = 6
+rings = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j77w8"]
+shading_mode = 0
+
+[sub_resource type="Animation" id="Animation_3ekwy"]
+resource_name = "shot"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mesh:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_iiqo4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mesh:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pj08r"]
+_data = {
+"RESET": SubResource("Animation_iiqo4"),
+"shot": SubResource("Animation_3ekwy")
+}
+
+[node name="Lazer" type="Node3D"]
+script = ExtResource("1_j8idl")
+
+[node name="Mesh" type="Node3D" parent="."]
+
+[node name="Outer" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -50)
+mesh = SubResource("CylinderMesh_5io03")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_0783d")
+
+[node name="Inner" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -50)
+mesh = SubResource("CylinderMesh_2hjtb")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_j77w8")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pj08r")
+}
+autoplay = "shot"
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_lrpjs")

@@ -1,0 +1,11 @@
+Model Information:
+* title:	Target_1
+* source:	https://sketchfab.com/3d-models/target-1-9614da0b39784afebfe11bafde3d54fc
+* author:	Meee (https://sketchfab.com/Meee)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Target_1" (https://sketchfab.com/3d-models/target-1-9614da0b39784afebfe11bafde3d54fc) by Meee (https://sketchfab.com/Meee) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

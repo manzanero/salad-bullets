@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://cu2ylbxdma785"]
+
+[ext_resource type="Script" path="res://assets/gun/gun.gd" id="1_37xbt"]
+[ext_resource type="PackedScene" uid="uid://dt2u8tngd26pb" path="res://resources/guns/pistol/model.gltf" id="1_wxuqn"]
+
+[node name="Gun" type="Node3D"]
+script = ExtResource("1_37xbt")
+
+[node name="Mesh" type="Node3D" parent="."]
+
+[node name="blockbench_export" parent="Mesh" instance=ExtResource("1_wxuqn")]
+transform = Transform3D(-1.09962e-08, 6.39249e-22, -0.251564, 1.49012e-08, 0.251564, -6.51352e-16, 0.251564, -1.49012e-08, -1.09962e-08, 0.124158, -0.0233672, -0.233034)
+
+[node name="FirePoint" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.086756, -0.171431)
+
+[node name="RayCast3D" type="RayCast3D" parent="FirePoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.00225896)
+exclude_parent = false
+target_position = Vector3(0, 0, -100)
+collision_mask = 16

@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjblor5xag7hg"]
+
+[ext_resource type="PackedScene" uid="uid://lagnr8do3uh5" path="res://resources/targets/lowpoly/scene.gltf" id="1_1c6u7"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_blorj"]
+height = 0.131
+radius = 0.418971
+
+[node name="Target" type="Node3D"]
+
+[node name="Mesh" type="Node3D" parent="."]
+
+[node name="Sketchfab_Scene" parent="Mesh" instance=ExtResource("1_1c6u7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.461649, 0)
+
+[node name="Collider" type="Node3D" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Collider"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collider/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.41421, 0.00603399)
+shape = SubResource("CylinderShape3D_blorj")

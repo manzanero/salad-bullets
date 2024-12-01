@@ -1,0 +1,11 @@
+Model Information:
+* title:	Low poly day camping
+* source:	https://sketchfab.com/3d-models/low-poly-day-camping-8d6cf9bf4a784c0b91148ba6a993e2f3
+* author:	Alkan Gözar (https://sketchfab.com/alkangozar)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Low poly day camping" (https://sketchfab.com/3d-models/low-poly-day-camping-8d6cf9bf4a784c0b91148ba6a993e2f3) by Alkan Gözar (https://sketchfab.com/alkangozar) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

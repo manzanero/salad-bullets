@@ -1,0 +1,118 @@
+[gd_scene load_steps=14 format=3 uid="uid://dtffsdq4pglhw"]
+
+[ext_resource type="Script" path="res://scenes/world/world.gd" id="1_b8rho"]
+[ext_resource type="PackedScene" uid="uid://cu2ylbxdma785" path="res://assets/gun/gun.tscn" id="2_0dqad"]
+[ext_resource type="PackedScene" uid="uid://cjblor5xag7hg" path="res://assets/target/target.tscn" id="3_ra2kg"]
+[ext_resource type="PackedScene" uid="uid://7i5fb12vhb7t" path="res://resources/environments/camping/scene.gltf" id="4_4krjq"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_egi3f"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4dkym"]
+albedo_color = Color(0.627451, 0.470588, 0.368627, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_av8ys"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7piso"]
+albedo_color = Color(0.627451, 0.470588, 0.368627, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_723ey"]
+size = Vector2(100, 100)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o3yas"]
+albedo_color = Color(0, 0.258824, 0.0509804, 1)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_g4cqi"]
+ground_bottom_color = Color(0.294118, 0.458824, 0.239216, 1)
+
+[sub_resource type="Sky" id="Sky_ljrty"]
+sky_material = SubResource("ProceduralSkyMaterial_g4cqi")
+
+[sub_resource type="Environment" id="Environment_0o87m"]
+background_mode = 2
+sky = SubResource("Sky_ljrty")
+ambient_light_source = 3
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_b8rho")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Enter VR"
+
+[node name="XROrigin3D" type="XROrigin3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.16056, 0.436891, 3.00787)
+
+[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75001, 0)
+
+[node name="LeftController" type="XRController3D" parent="XROrigin3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, 0)
+tracker = &"left_hand"
+
+[node name="LeftHand" type="Node3D" parent="XROrigin3D/LeftController"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.573576, 0.819152, 0, -0.819152, 0.573576, 0, 0.02, 0.115)
+
+[node name="Mesh" type="Node3D" parent="XROrigin3D/LeftController/LeftHand"]
+transform = Transform3D(1, 0, 0, 0, 1, -8.97729e-16, 1.77636e-15, -8.97729e-16, 1, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/LeftController/LeftHand/Mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, -8.97729e-16, 0, -8.97729e-16, 1, -0.0150001, 0, 0)
+mesh = SubResource("BoxMesh_egi3f")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_4dkym")
+
+[node name="Gun" parent="XROrigin3D/LeftController/LeftHand" instance=ExtResource("2_0dqad")]
+
+[node name="RightController" type="XRController3D" parent="XROrigin3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, 0)
+tracker = &"right_hand"
+
+[node name="RightHand" type="Node3D" parent="XROrigin3D/RightController"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.573576, 0.819152, 0, -0.819152, 0.573576, 0, 0.0203905, 0.11484)
+
+[node name="Mesh" type="Node3D" parent="XROrigin3D/RightController/RightHand"]
+transform = Transform3D(1, 0, 0, 0, 1, -8.97729e-16, 1.77636e-15, -8.97729e-16, 1, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/RightController/RightHand/Mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, -8.97729e-16, 0, -8.97729e-16, 1, 0.0150001, 0, 0)
+mesh = SubResource("BoxMesh_av8ys")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_7piso")
+
+[node name="Gun" parent="XROrigin3D/RightController/RightHand" instance=ExtResource("2_0dqad")]
+transform = Transform3D(1, 0, 0, 0, 1, -8.97729e-16, 1.77636e-15, -8.97729e-16, 1, 0, 0, 0)
+
+[node name="Ground" type="Node3D" parent="."]
+
+[node name="Mesh" type="Node3D" parent="Ground"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground/Mesh"]
+visible = false
+mesh = SubResource("PlaneMesh_723ey")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_o3yas")
+
+[node name="Sketchfab_Scene" parent="Ground/Mesh" instance=ExtResource("4_4krjq")]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)
+
+[node name="Props" type="Node3D" parent="Ground"]
+
+[node name="Target" parent="Ground/Props" instance=ExtResource("3_ra2kg")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.77652, 0.308583, 3.02176)
+
+[node name="Lights" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lights"]
+transform = Transform3D(0.664657, 0.706252, -0.243803, 0, 0.326311, 0.945262, 0.747149, -0.628275, 0.216885, 0, -1.99201, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_0o87m")

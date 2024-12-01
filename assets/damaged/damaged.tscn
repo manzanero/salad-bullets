@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2gfrptwknjfo"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_sq1bw"]
+radius = 0.02
+height = 0.04
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3vook"]
+albedo_color = Color(0.486275, 0, 0, 1)
+
+[node name="Damaged" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_sq1bw")
+surface_material_override/0 = SubResource("StandardMaterial3D_3vook")
